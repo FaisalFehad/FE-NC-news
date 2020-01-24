@@ -10,7 +10,7 @@ class ArticleComments extends Component {
   state = {
     comments: [],
     sortBy: "created_at",
-    loggedInUser: "butter_bridge",
+    loggedInUser: "",
     loading: true,
     err: false,
     err_msg: "",
@@ -21,7 +21,11 @@ class ArticleComments extends Component {
   componentDidMount() {
     const { article_id } = this.props;
     makeApiRequests(`articles/${article_id}/comments`).then(comments => {
-      this.setState({ comments, loading: false });
+      this.setState({
+        comments,
+        loading: false,
+        loggedInUser: this.state.currentUser
+      });
     });
   }
 

@@ -15,6 +15,11 @@ class App extends Component {
     username: "jessjelly"
   };
 
+  componentDidMount() {
+    const localUser = localStorage.getItem("user");
+    if (localUser) this.setState({ username: localUser });
+  }
+
   setUsername = selectedUser => {
     this.setState({ username: selectedUser });
   };
@@ -30,7 +35,10 @@ class App extends Component {
           <ArticleList path="/articles/" />
           <ArticleList exact path="/topics/:topic/" />
           <Article path="/articles/:article_id/" />
-          <ArticleComments path="/articles/:article_id/comments" />
+          <ArticleComments
+            path="/articles/:article_id/comments"
+            currentUser={this.state.username}
+          />
           <ErrDisplay default />
         </Router>
       </div>

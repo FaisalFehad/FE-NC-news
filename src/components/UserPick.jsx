@@ -15,6 +15,7 @@ class UserPick extends Component {
 
   handleClick = selectedUser => {
     this.props.pickedUser(selectedUser);
+    localStorage.setItem("user", selectedUser);
   };
 
   render() {

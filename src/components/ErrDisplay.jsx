@@ -7,7 +7,7 @@ const ErrHandling = ({ err_msg }) => {
         <h3>{err_msg}</h3>
       ) : (
         <h3>
-          Page not found... <span role="img">💩</span>
+          Page not found... <span aria-labelrole="img">💩</span>
         </h3>
       )}
     </div>
