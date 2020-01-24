@@ -29,13 +29,15 @@ class ArticleComments extends Component {
     });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { article_id } = this.props;
-    makeApiRequests(
-      `articles/${article_id}/comments?sort_by=${this.state.sortBy}`
-    ).then(comments => {
-      this.setState({ comments });
-    });
+    if (prevProps.article_id !== article_id) {
+      makeApiRequests(
+        `articles/${article_id}/comments?sort_by=${this.state.sortBy}`
+      ).then(comments => {
+        this.setState({ comments });
+      });
+    }
   }
 
   handleSortByByChange = ({ target: { value } }) => {
