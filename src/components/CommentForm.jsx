@@ -33,7 +33,7 @@ class CommentForm extends Component {
         )}
 
         <form onSubmit={this.handleSubmit}>
-          <div class="form-group">
+          <div className="form-group">
             <textarea
               placeholder="Write a comment 🔥"
               type="text"
@@ -41,7 +41,6 @@ class CommentForm extends Component {
               value={this.state.bodyInput}
               id="comment"
               className="form-control"
-              id="exampleFormControlTextarea1"
               rows="3"
             ></textarea>
           </div>

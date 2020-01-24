@@ -33,12 +33,12 @@ class ArticleList extends Component {
 
   render() {
     return (
-      <articles>
+      <article>
         {this.state.loading && (
           <Loading msg={"One tick just getting you the articles"} />
         )}
         <ArticleCard allArticles={this.state.allArticles} />
-      </articles>
+      </article>
     );
   }
 }

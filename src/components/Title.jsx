@@ -4,7 +4,9 @@ import { Link } from "@reach/router";
 const Title = ({ username }) => {
   return (
     <div>
-      <h1>NC News</h1>
+      <Link to={"/"}>
+        <h1>NC News</h1>
+      </Link>
       <h5>
         Logged In As: <Link to={"/users"}>{username}</Link>{" "}
       </h5>
