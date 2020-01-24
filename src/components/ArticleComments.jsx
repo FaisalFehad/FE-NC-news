@@ -24,7 +24,7 @@ class ArticleComments extends Component {
       this.setState({
         comments,
         loading: false,
-        loggedInUser: this.state.currentUser
+        loggedInUser: this.props.currentUser
       });
     });
   }
@@ -90,17 +90,7 @@ class ArticleComments extends Component {
                 <hr />
                 <br />
                 <p>Body: {comment.body}</p>
-                {!this.state.deletingComment &&
-                  this.state.loggedInUser === comment.username && (
-                    <button
-                      onClick={event =>
-                        this.handleDeleteComment(comment.comment_id)
-                      }
-                    >
-                      {" "}
-                      Delete Comment{" "}
-                    </button>
-                  )}
+                <h1>{console.log(this.state.loggedInUser)}</h1>
                 <p>Username: {comment.username}</p>
                 <p>Created at: {comment.created_at}</p>
                 <br />
@@ -109,6 +99,19 @@ class ArticleComments extends Component {
                   currentVote={comment.votes}
                   path={"comments"}
                 />
+                <br />
+                {!this.state.deletingComment &&
+                  this.state.loggedInUser === comment.username && (
+                    <button
+                      type="button"
+                      className="btn btn-outline-warning"
+                      onClick={event =>
+                        this.handleDeleteComment(comment.comment_id)
+                      }
+                    >
+                      Delete Comment <span role="img">💩</span>
+                    </button>
+                  )}
               </>
             );
           })}
