@@ -35,10 +35,6 @@ class App extends Component {
           <ArticleList path="/articles/" />
           <ArticleList exact path="/topics/:topic/" />
           <Article path="/articles/:article_id/" />
-          <ArticleComments
-            path="/articles/:article_id/comments"
-            currentUser={this.state.username}
-          />
           <ErrDisplay default />
         </Router>
       </div>

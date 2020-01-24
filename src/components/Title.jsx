@@ -8,7 +8,7 @@ const Title = ({ username }) => {
         <h1>NC News</h1>
       </Link>
       <h5>
-        Logged In As: <Link to={"/users"}>{username}</Link>{" "}
+        Logged In As: <Link to={"/users"}>{username}</Link>
       </h5>
     </div>
   );

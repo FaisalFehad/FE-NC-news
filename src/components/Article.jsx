@@ -5,31 +5,38 @@ import CommentForm from "./CommentForm";
 import Vote from "./Vote";
 import Loading from "./Loading";
 import ErrDisplay from "./ErrDisplay";
+import ArticleComments from "./ArticleComments";
 
 class Article extends Component {
   state = {
     article: "",
     loading: true,
-    err: null,
-    err_msg: ""
+    err: false,
+    err_msg: "",
+    commentsDisplayed: false
   };
 
   componentDidMount() {
     const { article_id } = this.props;
     makeApiRequests(`articles/${article_id}`)
-      .then(article => {
+      .then(({ article }) => {
         this.setState({ article, loading: false });
       })
       .catch(() => {
         this.setState({
           err: true,
-          err_msg: "Ops this article dose not exist 💩 404"
+          err_msg: "oops this article dose not exist 💩 404"
         });
       });
   }
 
+  handleShowComments = () => {
+    const { commentsDisplayed } = this.state;
+    this.setState({ commentsDisplayed: !commentsDisplayed });
+  };
+
   render() {
-    const article = this.state.article.article;
+    const { article } = this.state;
     if (article) {
       return (
         <div>
@@ -38,15 +45,25 @@ class Article extends Component {
           <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
           <p>Author {article.author}</p>
           <p>Created at {article.created_at}</p>
-          <Link to={"comments"}>
-            <button> Show {article.comment_count} comments 👀</button>
-          </Link>
           <Vote
             id={article.article_id}
             currentVote={article.votes}
             path={"articles"}
           />
           <CommentForm article_id={article.article_id} />
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={this.handleShowComments}
+          >
+            {!this.state.commentsDisplayed
+              ? `Show ${article.comment_count} comments 👀`
+              : `Hide Comments 🙈`}
+          </button>
+          <br />
+          {this.state.commentsDisplayed && (
+            <ArticleComments article_id={article.article_id} />
+          )}
         </div>
       );
     } else if (this.state.err)
