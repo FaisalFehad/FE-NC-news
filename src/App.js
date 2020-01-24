@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import ArticleList from "./components/ArticleList";
 import Article from "./components/Article";
-import ArticleComments from "./components/ArticleComments";
 import ErrDisplay from "./components/ErrDisplay";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserPick from "./components/UserPick";
