@@ -8,10 +8,15 @@ import Article from "./components/Article";
 import ArticleComments from "./components/ArticleComments";
 import ErrDisplay from "./components/ErrDisplay";
 import "bootstrap/dist/css/bootstrap.min.css";
+import UserPick from "./components/UserPick";
 
 class App extends Component {
   state = {
-    username: "butter_bridge"
+    username: "jessjelly"
+  };
+
+  setUsername = selectedUser => {
+    this.setState({ username: selectedUser });
   };
 
   render() {
@@ -19,10 +24,11 @@ class App extends Component {
       <div className="App">
         <Title username={this.state.username} />
         <Navbar />
-        <Router>
+        <Router primary={false}>
           <ArticleList path="/" />
-          <ArticleList path="/topics/:topic" />
+          <UserPick path="/users/" pickedUser={this.setUsername} />
           <ArticleList path="/articles/" />
+          <ArticleList exact path="/topics/:topic/" />
           <Article path="/articles/:article_id/" />
           <ArticleComments path="/articles/:article_id/comments" />
           <ErrDisplay default />

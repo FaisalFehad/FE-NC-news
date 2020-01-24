@@ -16,12 +16,12 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">
+      <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <a className="navbar-brand" href="/">
           NC News
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNavAltMarkup"
@@ -29,15 +29,19 @@ class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <Link className="nav-item nav-link active" to={"/users"}>
+              LOGIN
+            </Link>
             {this.state.allTopics.map((topic, index) => {
               return (
                 <Link
                   className="nav-item nav-link active"
-                  to={`topics/${topic.slug}`}
+                  to={`/topics/${topic.slug}`}
+                  key={index}
                 >
                   {topic.slug.toUpperCase()}
                 </Link>

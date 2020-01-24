@@ -14,8 +14,6 @@ class CommentForm extends Component {
   };
 
   handleSubmit = event => {
-    console.log("123");
-
     event.preventDefault();
     this.setState({ posting: true, bodyInput: "" });
     const { bodyInput } = this.state;
