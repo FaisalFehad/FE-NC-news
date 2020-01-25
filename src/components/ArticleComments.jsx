@@ -5,6 +5,7 @@ import Vote from "./Vote";
 import Loading from "./Loading";
 import ErrDisplay from "./ErrDisplay";
 import NoticeMsgDisplay from "./NoticeMsgDisplay";
+import { Button, Card } from "react-bootstrap/";
 
 class ArticleComments extends Component {
   state = {
@@ -85,20 +86,25 @@ class ArticleComments extends Component {
           {comments.map(comment => {
             return (
               <>
-                <hr />
-                <div className="card">
-                  <div className="card-header">
-                    <h5>{comment.body}</h5>
-                    <h6>-By {comment.username}</h6>
-                  </div>
-                  <li className="list-group-item">
+                <Card className="text-center">
+                  <Card.Header>
+                    <h5>{comment.username}</h5>
+                    <p>
+                      <small>{comment.created_at}</small>
+                    </p>
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text>
+                      <h6>{comment.body}</h6>
+                    </Card.Text>
                     <Vote
                       id={comment.comment_id}
                       currentVote={comment.votes}
                       path={"comments"}
                     />
                     <br />
-                    <h6>{comment.created_at}</h6>
+                  </Card.Body>
+                  <Card.Footer className="text-muted">
                     {!this.state.deletingComment &&
                       this.props.currentUser === comment.username && (
                         <button
@@ -110,9 +116,8 @@ class ArticleComments extends Component {
                           {`Delete Comment `}
                         </button>
                       )}
-                  </li>
-                  <ul className="list-group list-group-flush"></ul>
-                </div>
+                  </Card.Footer>
+                </Card>
               </>
             );
           })}
