@@ -62,9 +62,7 @@ class CommentForm extends Component {
             ></textarea>
           </div>
           {!posting && (
-            <button className="btn btn-outline-secondary">
-              Add Comment ▶︎
-            </button>
+            <button className="btn btn-outline-success">Add Comment ▶︎</button>
           )}
         </form>
       </ul>

@@ -13,7 +13,8 @@ class Article extends Component {
     loading: true,
     err: false,
     err_msg: "",
-    commentsDisplayed: false
+    commentsDisplayed: false,
+    commentFormDisplayed: false
   };
 
   componentDidMount() {
@@ -39,34 +40,36 @@ class Article extends Component {
     const { article } = this.state;
     if (article) {
       return (
-        <div>
-          <h3>{article.title}</h3>
-          <p>{article.body}</p>
-          <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
-          <p>Author {article.author}</p>
-          <p>Created at {article.created_at}</p>
-          <Vote
-            id={article.article_id}
-            currentVote={article.votes}
-            path={"articles"}
-          />
-          <CommentForm article_id={article.article_id} />
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={this.handleShowComments}
-          >
-            {!this.state.commentsDisplayed
-              ? `Show ${article.comment_count} comments 👀`
-              : `Hide Comments 🙈`}
-          </button>
-          <br />
-          {this.state.commentsDisplayed && (
-            <ArticleComments
-              article_id={article.article_id}
-              currentUser={this.props.currentUser}
+        <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs"></ul>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">{article.title}</h4>
+            <p class="card-text">{article.body}</p>
+            <Vote
+              id={article.article_id}
+              currentVote={article.votes}
+              path={"articles"}
             />
-          )}
+            <hr />
+            <CommentForm article_id={article.article_id} />
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={this.handleShowComments}
+            >
+              {!this.state.commentsDisplayed
+                ? `Show ${article.comment_count} comments 👀`
+                : `Hide Comments 🙈`}
+            </button>
+            {this.state.commentsDisplayed && (
+              <ArticleComments
+                article_id={article.article_id}
+                currentUser={this.props.currentUser}
+              />
+            )}
+          </div>
         </div>
       );
     } else if (this.state.err)
