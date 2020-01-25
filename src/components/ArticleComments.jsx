@@ -67,7 +67,7 @@ class ArticleComments extends Component {
       return (
         <>
           {this.state.commentDeleted && (
-            <NoticeMsgDisplay msg={"The comment has been deleted!"} />
+            <NoticeMsgDisplay msg={"The comment has been deleted! 💥"} />
           )}
           <form>
             <label>
@@ -86,29 +86,33 @@ class ArticleComments extends Component {
             return (
               <>
                 <hr />
-                <br />
-                <p>Body: {comment.body}</p>
-                <p>Username: {comment.username}</p>
-                <p>Created at: {comment.created_at}</p>
-                <br />
-                <Vote
-                  id={comment.comment_id}
-                  currentVote={comment.votes}
-                  path={"comments"}
-                />
-                <br />
-                {!this.state.deletingComment &&
-                  this.props.currentUser === comment.username && (
-                    <button
-                      type="button"
-                      className="btn btn-outline-warning"
-                      onClick={event =>
-                        this.handleDeleteComment(comment.comment_id)
-                      }
-                    >
-                      Delete Comment <span role="img">💩</span>
-                    </button>
-                  )}
+                <div className="card">
+                  <div className="card-header">
+                    <h5>{comment.body}</h5>
+                    <h6>-By {comment.username}</h6>
+                  </div>
+                  <li className="list-group-item">
+                    <Vote
+                      id={comment.comment_id}
+                      currentVote={comment.votes}
+                      path={"comments"}
+                    />
+                    <br />
+                    <h6>{comment.created_at}</h6>
+                    {!this.state.deletingComment &&
+                      this.props.currentUser === comment.username && (
+                        <button
+                          className="btn btn-outline-warning"
+                          onClick={event =>
+                            this.handleDeleteComment(comment.comment_id)
+                          }
+                        >
+                          {`Delete Comment `}
+                        </button>
+                      )}
+                  </li>
+                  <ul className="list-group list-group-flush"></ul>
+                </div>
               </>
             );
           })}
