@@ -11,10 +11,8 @@ class Article extends Component {
   state = {
     article: "",
     loading: true,
-    err: false,
     err_msg: "",
-    commentsDisplayed: false,
-    commentFormDisplayed: false
+    commentsDisplayed: false
   };
 
   componentDidMount() {
@@ -25,7 +23,6 @@ class Article extends Component {
       })
       .catch(() => {
         this.setState({
-          err: true,
           err_msg: "oops this article dose not exist 💩 404"
         });
       });
@@ -37,7 +34,7 @@ class Article extends Component {
   };
 
   render() {
-    const { article } = this.state;
+    const { article, err_msg } = this.state;
     if (article) {
       return (
         <div class="card text-center">
@@ -72,8 +69,7 @@ class Article extends Component {
           </div>
         </div>
       );
-    } else if (this.state.err)
-      return <ErrDisplay err_msg={this.state.err_msg} />;
+    } else if (err_msg) return <ErrDisplay err_msg={err_msg} />;
     else return <Loading err_msg={"Just getting you that amazing article"} />;
   }
 }
