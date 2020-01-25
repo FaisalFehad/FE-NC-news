@@ -30,7 +30,7 @@ class Vote extends Component {
             type="button"
             className="btn btn-outline-info"
           >
-            Up Vote Vote <span role="img">👍</span>
+            Up Vote <span role="img">👍</span>
           </button>
         )}
         {this.state.voteValue >= 0 && (

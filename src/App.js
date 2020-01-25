@@ -33,7 +33,10 @@ class App extends Component {
           <UserPick path="/users/" pickedUser={this.setUsername} />
           <ArticleList path="/articles/" />
           <ArticleList exact path="/topics/:topic/" />
-          <Article path="/articles/:article_id/" />
+          <Article
+            path="/articles/:article_id/"
+            currentUser={this.state.username}
+          />
           <ErrDisplay default />
         </Router>
       </div>

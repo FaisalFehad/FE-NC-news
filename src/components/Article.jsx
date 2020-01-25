@@ -62,7 +62,10 @@ class Article extends Component {
           </button>
           <br />
           {this.state.commentsDisplayed && (
-            <ArticleComments article_id={article.article_id} />
+            <ArticleComments
+              article_id={article.article_id}
+              currentUser={this.props.currentUser}
+            />
           )}
         </div>
       );

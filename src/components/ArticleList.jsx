@@ -37,7 +37,10 @@ class ArticleList extends Component {
         {this.state.loading && (
           <Loading msg={"One tick just getting you the articles"} />
         )}
-        <ArticleCard allArticles={this.state.allArticles} />
+        <ArticleCard
+          allArticles={this.state.allArticles}
+          currentUser={this.props.currentUser}
+        />
       </article>
     );
   }

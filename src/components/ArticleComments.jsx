@@ -10,7 +10,6 @@ class ArticleComments extends Component {
   state = {
     comments: [],
     sortBy: "created_at",
-    loggedInUser: "",
     loading: true,
     err: false,
     err_msg: "",
@@ -23,8 +22,7 @@ class ArticleComments extends Component {
     makeApiRequests(`articles/${article_id}/comments`).then(comments => {
       this.setState({
         comments,
-        loading: false,
-        loggedInUser: this.props.currentUser
+        loading: false
       });
     });
   }
@@ -90,7 +88,6 @@ class ArticleComments extends Component {
                 <hr />
                 <br />
                 <p>Body: {comment.body}</p>
-                <h1>{console.log(this.state.loggedInUser)}</h1>
                 <p>Username: {comment.username}</p>
                 <p>Created at: {comment.created_at}</p>
                 <br />
@@ -101,7 +98,7 @@ class ArticleComments extends Component {
                 />
                 <br />
                 {!this.state.deletingComment &&
-                  this.state.loggedInUser === comment.username && (
+                  this.props.currentUser === comment.username && (
                     <button
                       type="button"
                       className="btn btn-outline-warning"
