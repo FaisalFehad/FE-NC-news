@@ -12,10 +12,19 @@ class ArticleList extends Component {
   };
 
   componentDidMount() {
-    const { topic } = this.props || "";
-    makeApiRequests(`articles/?topic=${topic}`)
+    const { topic } = this.props;
+
+    makeApiRequests(`articles/?topic=${topic || ""}`)
       .then(({ articles }) => {
-        this.setState({ allArticles: articles, loading: false });
+        console.log(articles, "<<<<< articles");
+
+        if (articles.length)
+          this.setState({ allArticles: articles, loading: false });
+        else
+          this.setState({
+            err_msg: "No Articles found with this topic 🙅‍♀️",
+            loading: false
+          });
       })
       .catch(
         ({
@@ -32,7 +41,7 @@ class ArticleList extends Component {
     const { err_msg, loading, allArticles, currentUser } = this.state;
     return (
       <article>
-        {err_msg && <ErrHandling err_msg={err_msg} />}
+        {!allArticles || (err_msg && <ErrHandling err_msg={err_msg} />)}
         {loading && (
           <Loading msg={"One tick just getting you the articles 🏃‍♂️💨"} />
         )}
