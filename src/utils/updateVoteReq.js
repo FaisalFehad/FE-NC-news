@@ -5,9 +5,7 @@ export const updateArticleVoteReq = (id, inc_votes, path) => {
     .patch(`https://nc-news2020.herokuapp.com/api/${path}/${id}`, {
       inc_votes
     })
-    .then(({ data }) => {
-      return data;
-    });
+    .then(({ data }) => data);
 };
 
 export default updateArticleVoteReq;

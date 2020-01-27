@@ -12,7 +12,14 @@ class Vote extends Component {
       };
     });
     const { path, id } = this.props;
-    updateArticleVoteReq(id, num, path);
+    updateArticleVoteReq(id, num, path).catch(() => {
+      this.setState(currentState => {
+        return {
+          currentVote: currentState.currentVote - num,
+          voteValue: currentState.voteValue - num
+        };
+      });
+    });
   };
 
   componentDidMount() {

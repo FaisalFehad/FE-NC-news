@@ -13,7 +13,6 @@ class ArticleList extends Component {
 
   componentDidMount() {
     const { topic } = this.props;
-
     makeApiRequests(`articles/?topic=${topic || ""}`)
       .then(({ articles }) => {
         console.log(articles, "<<<<< articles");
