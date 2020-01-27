@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
 import makeApiRequests from "../utils/api";
 import CommentForm from "./CommentForm";
 import Vote from "./Vote";

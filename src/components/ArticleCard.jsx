@@ -7,8 +7,8 @@ const ArticleCard = ({ allArticles }) => {
     return allArticles.map(article => {
       return (
         <main key={article.article_id}>
-          <div class="card">
-            <div class="card-body">
+          <div className="card">
+            <div className="card-body">
               <h3>
                 <Link to={`/articles/${article.article_id}`}>
                   {article.title}

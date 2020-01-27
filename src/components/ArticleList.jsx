@@ -1,46 +1,42 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import makeApiRequests from "../utils/api";
+import ErrHandling from "./ErrDisplay";
 import Loading from "./Loading";
 
 class ArticleList extends Component {
   state = {
     allArticles: [],
-    loading: true
+    loading: true,
+    err_msg: null
   };
 
   componentDidMount() {
-    if (this.props.topic) {
-      makeApiRequests(`articles/?topic=${this.props.topic}`)
-        .then(({ articles }) => {
-          const articlesData = articles.map(article => article);
-          this.setState({ allArticles: articlesData });
-        })
-        .then(() => {
-          this.setState({ loading: false });
-        });
-    } else {
-      makeApiRequests("articles/")
-        .then(({ articles }) => {
-          const articlesData = articles.map(article => article);
-          this.setState({ allArticles: articlesData });
-        })
-        .then(() => {
-          this.setState({ loading: false });
-        });
-    }
+    const { topic } = this.props || "";
+    makeApiRequests(`articles/?topic=${topic}`)
+      .then(({ articles }) => {
+        this.setState({ allArticles: articles, loading: false });
+      })
+      .catch(
+        ({
+          response: {
+            data: { msg }
+          }
+        }) => {
+          this.setState({ err_msg: msg, loading: false });
+        }
+      );
   }
 
   render() {
+    const { err_msg, loading, allArticles, currentUser } = this.state;
     return (
       <article>
-        {this.state.loading && (
-          <Loading msg={"One tick just getting you the articles"} />
+        {err_msg && <ErrHandling err_msg={err_msg} />}
+        {loading && (
+          <Loading msg={"One tick just getting you the articles 🏃‍♂️💨"} />
         )}
-        <ArticleCard
-          allArticles={this.state.allArticles}
-          currentUser={this.props.currentUser}
-        />
+        <ArticleCard allArticles={allArticles} currentUser={currentUser} />
       </article>
     );
   }

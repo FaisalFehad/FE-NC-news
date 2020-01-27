@@ -5,7 +5,7 @@ import Vote from "./Vote";
 import Loading from "./Loading";
 import ErrDisplay from "./ErrDisplay";
 import NoticeMsgDisplay from "./NoticeMsgDisplay";
-import { Button, Card } from "react-bootstrap/";
+import { Card } from "react-bootstrap/";
 
 class ArticleComments extends Component {
   state = {
