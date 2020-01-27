@@ -24,3 +24,10 @@ $ npm install
 ```
 $ npm start
 ```
+
+## Used Libraries
+
+- [React](https://reactjs.org)
+- [Reach Router](https://reach.tech/router)
+- [Axios](https://github.com/axios/axios)
+- [React Bootstrap](https://react-bootstrap.github.io)
